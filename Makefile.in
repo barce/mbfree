@@ -1,0 +1,100 @@
+# Makefile for mbfree.
+
+#### Start of system configuration section. ####
+
+VPATH = @srcdir@
+srcdir = $(VPATH)
+
+CC = @CC@
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA = @INSTALL_DATA@
+MAKEINFO = makeinfo
+TEXI2DVI = texi2dvi
+
+DEFS = @DEFS@
+LIBS = @LIBS@
+
+CFLAGS = -g
+LDFLAGS = -g
+
+prefix = /usr/local
+exec_prefix = $(prefix)
+
+bindir = $(exec_prefix)/bin
+infodir = $(prefix)/info
+
+# Prefix to be prepended to each installed program, normally empty or `g'.
+binprefix = 
+
+#### End of system configuration section. ####
+
+SHELL = /bin/sh
+
+SRCS = mbfree.c
+OBJS = mbfree.o
+HDRS =
+DISTFILES = $(SRCS) $(HDRS) COPYING ChangeLog NEWS Makefile.in \
+	    README INSTALL \
+	    configure configure.in \
+	    mkinstalldirs TAGS
+
+all: mbfree strip
+
+.PHONY: all
+
+.c.o:
+	$(CC) -c $(CPPFLAGS) $(DEFS) $(CFLAGS) $<
+
+.PHONY: install installdirs
+install: installdirs mbfree
+	$(INSTALL_PROGRAM) mbfree $(bindir)/$(binprefix)mbfree
+installdirs:
+	${srcdir}/mkinstalldirs $(bindir) $(infodir)
+
+mbfree: $(OBJS) 
+	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
+
+strip: 
+	strip mbfree
+
+.PHONY: check
+check: mbfree
+	@echo expect no output from diff
+	./mbfree > test.out
+	diff -c $(srcdir)/testdata test.out
+	rm -f test.out
+
+Makefile: Makefile.in config.status
+	$(SHELL) config.status
+
+config.status: configure
+	$(srcdir)/configure --no-create
+
+TAGS: $(SRCS)
+	etags $(SRCS)
+
+.PHONY: clean mostlyclean distclean realclean dist
+
+clean:
+	rm -f mbfree *.o core test.out mbfree.dvi mbfree.?? mbfree.??s
+
+mostlyclean: clean
+
+distclean: clean
+	rm -f Makefile config.status
+
+realclean: distclean
+	rm -f TAGS mbfree.info*
+
+dist: $(DISTFILES)
+	echo mbfree-`sed -e '/version/!d' -e 's/[^0-9.]*\([0-9.]*\).*/\1/' -e q version.c` > .fname
+	rm -rf `cat .fname`
+	mkdir `cat .fname`
+	ln $(DISTFILES) `cat .fname`
+	tar chozf `cat .fname`.tar.z `cat .fname`
+	rm -rf `cat .fname` .fname
+
+# Prevent GNU make v3 from overflowing arg limit on SysV.
+.NOEXPORT:

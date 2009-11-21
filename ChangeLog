@@ -1,0 +1,17 @@
+1.0.5 2001-08-23
+  * Fixed GNU style options and argument parsing.  
+    Thanks to Matt Dunford <zoot@zotikos.com>
+
+1.0.4c Thu Nov  2 21:34:49 PST 2000
+  * Adding a little more documentation.
+
+1.0.4b Sat Aug 12 23:16:05 PDT 2000 
+  * Changed version info to report 1.0.4b instead of 1.0.3.  (duh..)
+
+1.0.4
+  * Changed declarations of pointers so that they are assigned NULL.
+
+  * Emptied out the old ChangeLog from the GNU Hello program.
+
+  * Fixed missing argument (argv0) in one of the status functions. 
+  

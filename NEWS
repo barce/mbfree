@@ -1,0 +1,34 @@
+1.0.5 News
+----------
+The options should be fixed now.  Thanks Matt.
+
+1.0.4c News
+-----------
+As of 1.0.4c, the GNU style options don't work right now.  It is an 
+oversight on my part.  I'll fix it someday.
+
+doing this:
+
+-- snip --
+mbfree --megabytes=100
+-- snip --
+
+doesn't work.  Instead, you can do:
+
+-- snip --
+mbfree --megabytes 100
+-- snip --
+
+or
+
+-- snip --
+mbfree -m 100
+-- snip --
+
+or
+
+-- snip --
+mbfree 100  (without an option, mbfree defaults to freeing megabytes).
+-- snip --
+
+
