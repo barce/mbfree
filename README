@@ -1,0 +1,50 @@
+WHAT IT MEANS
+-------------
+  Rumors of what mbfree means.
+  Mega Byte Free
+  Memory Be Free
+  
+WHAT IT DOES  
+------------
+  Mbfree allocates and frees a given amount of memory.  It is especially
+  helpful on systems that are over utilized that swap a lot.
+
+WHY MBFREE
+----------
+  A lot of OSs loose performance when their main memory is used and 
+  the OS is swapping.  Mbfree allows you to allocate a certain amount
+  of memory and free it.  In Linux the result is usually faster loading
+  of programs -- or successful loading of programs when they don't
+  load because there is not enough free memory.
+
+USES OF MBFREE (SERVER USES)
+----------------------------
+  My websites are served from wilcox.nirvani.net.  It is a PII 400 with
+  128MB of RAM.  I also use this machine as a workstation sometimes.  
+  During the day is is hammered pretty good.  I have mbfree run every 120
+  seconds freeing up anywhere between 20 and 40 MB of memory.
+
+  Apache+php+mysql used to lock up every now and again.  I always suspected
+  that it wasn't apache+php+mysql that was causing apache to freeze, but
+  that it was the OS being way over utilized.  
+
+  Now that I run mbfree on a schedule, I haven't had it do it.
+
+  
+OTHER USES (DESKTOP USES)
+-------------------------
+  Ever have Netscape Navigator lock up?  (me too).
+
+  Try killall -9 netscape, then run "mbfree 40".  Try starting it up again.
+  There should be enough unallocated memory that Netscape will be happier.
+  Use at your own risk -- it works for me.
+
+  Ever have RealNetwork's RealPlayer in linux just freeze -- or maybe 
+  it doesn't start up and it is real jerky?  (me too).
+
+  Try shutting down realplayer, run "mbfree 40" and fire up realplayer again. 
+  It works for me.  Like Navigator, Realplayer is really picky about not 
+  having enough memory.
+
+
+
