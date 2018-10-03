@@ -1,5 +1,6 @@
 /* mbfree -- possibly free up some system memory
 **
+** Copyright (c) 2018, Jim Barcelona @barce . 
 ** Copyright (c) 2000, 2001 Jeremy Brand <jeremy@nirvani.net>.
 ** http://www.jeremybrand.com/Jeremy/Brand/Jeremy_Brand.html
 **
