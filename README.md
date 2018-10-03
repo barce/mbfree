@@ -14,6 +14,10 @@ of memory and free it.  In Linux the result is usually faster loading
 of programs -- or successful loading of programs when they don't
 load because there is not enough free memory.
 
+# INSTALL
+`./configure && make && make install`
+See INSTALL file for more info
+
 # USES OF MBFREE (SERVER USES)
 MBFREE can take memory that is currently in "swap" and in a "used" state
 and put it into a free state.
